@@ -13,12 +13,14 @@ public class SystemIO extends BuildUp{
     static String[] pto5 = new String[18];
     static String[] pto6 = new String[18];
     static String[] pto7 = new String[18];
+    static String[] taskPrep = new String[7];
     static String accepted;
     static String Mondayw1 = "'POC Beta'!J";
     static String Wednesdayw1 = "'POC Beta'!K";
     static String Thursdayw2 = "'POC Beta'!L";
     static String Fridayw1 = "'POC Beta'!L";
     static String Fridayw2 = "'POC Beta'!M";
+    static String rangeTaskPrep = "'POC Beta'!B";
 
     static void firstInteraction(){
         while (!enter) {
@@ -28,9 +30,10 @@ public class SystemIO extends BuildUp{
 
                 if (accepted.equals("yes")) {
                     System.out.println("Let's start by entering the PTO's for week 1");
-                    enterPTOWeek1("w1");
+                    enterPTO("w1");
                     System.out.println("Let's start by entering the PTO's for week 2");
-                    enterPTOWeek1("w2");
+                    enterPTO("w2");
+                    System.out.println("Let's continue by entering inside the Task Preparation Table");
                     enter = true;
                 } else if (accepted.equals("no")) {
                     System.out.println("Quitting the application");
@@ -45,7 +48,7 @@ public class SystemIO extends BuildUp{
         }
     }
     //Accepts w1 & w2
-    static void enterPTOWeek1(String week) {
+    static void enterPTO(String week) {
         boolean isTrue = false;
         boolean isTrue2;
         int i;
@@ -291,5 +294,13 @@ public class SystemIO extends BuildUp{
                 }
             }
     }
-    
+    static void enterTaskPreparationTable() throws IOException, GeneralSecurityException {
+        int number = 1;
+        for(int x = 0; x < 7; x++){
+            System.out.println("Add the colleague to position: " + number);
+            taskPrep[x] = scan.nextLine();
+            number++;
+        }
+        UpdateTable.updateTableWithTaskPrepSprint1(taskPrep,rangeTaskPrep);
+    }
 }

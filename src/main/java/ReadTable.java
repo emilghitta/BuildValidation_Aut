@@ -1,11 +1,7 @@
 import com.google.api.services.sheets.v4.model.ValueRange;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 public class ReadTable extends BuildUp{
     static String readAO1 = "Beta!K2:K20";
     static String readAO2 = "Beta!K23:K41";

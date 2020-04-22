@@ -10,7 +10,6 @@ public class UpdateTable extends BuildUp{
     static String rangeAO2 = "'POC Beta'!H";
     static String rangePTOwk1M = "'POC Beta'!J";
     //Applies for Sprint1
-    static String rangeTaskPrep;
 
     protected static void UpdateTableElementsAO1andAO2() throws IOException, GeneralSecurityException {
         System.out.println("Shuffling for table AO1");
@@ -143,29 +142,23 @@ public class UpdateTable extends BuildUp{
 //
 //    }
 
- /*     protected static void updateTableWithTaskPrepSprint1() throws IOException,GeneralSecurityException{
-          for(int x =0; x < 7; x++) {
-              int count = x;
-              switch (count){
-                  case 0: rangeTaskPrep = "Beta!B12";
-                      break;
-                  case 1: rangeTaskPrep = "Beta!D12";
-                      break;
-                  case 2: rangeTaskPrep = "Beta!F12";
-                      break;
-                  case 3: rangeTaskPrep = "Beta!B33";
-                      break;
-                  case 4: rangeTaskPrep = "Beta!D33";
-                      break;
-                  case 5: rangeTaskPrep = "Beta!F33";
-                      break;
-                  case 6: rangeTaskPrep = "Beta!H33";
-              }
-              ValueRange update = new ValueRange().setValues(Arrays.asList(Arrays.asList(ReadTable.array)));
+  protected static void updateTableWithTaskPrepSprint1(String[] taskPrep, String range) throws IOException, GeneralSecurityException {
+        buildup();
+      int count = 54;
+          for(int x = 0; x < 7; x++) {
+
+              range += count;
+              ValueRange update = new ValueRange().setValues(Arrays.asList(Arrays.asList(taskPrep[x])));
               UpdateValuesResponse result = service.spreadsheets().values()
-                      .update(spreadsheetId, rangeTaskPrep,update)
+                      .update(spreadsheetId, range,update)
                       .setValueInputOption("RAW")
                       .execute();
+              if(count > 60){
+                  break;
+              }else{
+                  count++;
+                  range = "'POC Beta'!B";
+              }
           }
-      }*/
+      }
 }
